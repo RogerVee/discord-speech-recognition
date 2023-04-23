@@ -47,7 +47,8 @@ const handleSpeakingEvent = <T extends SpeechRecognition>({
     "start",
     function handleSpeechEventOnConnectionReceiver(userId) {
       const user = client.users.cache.get(userId);
-
+      // get datetime in mil
+      const startTimestamp = new Date().getTime();
       // Shouldn't proceed if user is undefined, some checks will fail even if they shouldn't
       if (!user) return;
 
@@ -82,6 +83,7 @@ const handleSpeakingEvent = <T extends SpeechRecognition>({
           user,
           connection,
           speechOptions,
+          startTimestamp, // Add the start time here
         });
 
         if (voiceMessage) client.emit("speech", voiceMessage);

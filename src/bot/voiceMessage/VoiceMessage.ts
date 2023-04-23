@@ -16,6 +16,7 @@ export interface VoiceMessageData {
   error?: Error;
   connection: VoiceConnection;
   author: User;
+  startTimestamp: number;
 }
 
 export default class VoiceMessage {
@@ -32,6 +33,7 @@ export default class VoiceMessage {
    * Duration in seconds
    */
   duration: number;
+  startTimestamp: number;
 
   private static audioBufferFormat = {
     sampleRate: 48000,
@@ -76,6 +78,7 @@ export default class VoiceMessage {
     this.duration = data.duration;
     this.content = data?.content;
     this.error = data?.error;
+    this.startTimestamp = data.startTimestamp;
   }
 
   /**

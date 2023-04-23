@@ -13,12 +13,14 @@ export default async <T extends SpeechRecognition>({
   user,
   connection,
   speechOptions,
+  startTimestamp
 }: {
   client: Client;
   bufferData: Uint8Array[];
   user: User;
   connection: VoiceConnection;
   speechOptions: SpeechOptions<T>;
+  startTimestamp: number;
 }): Promise<VoiceMessage | undefined> => {
   if (!connection.joinConfig.channelId) return undefined;
 
@@ -53,6 +55,8 @@ export default async <T extends SpeechRecognition>({
       content,
       error,
       connection,
+      startTimestamp,
+
     },
     channel,
   });
